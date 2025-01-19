@@ -1,0 +1,32 @@
+/* bottom-bar.css */
+
+/* شريط التنقل السفلي */
+.bottom-bar {
+    background-color: #0567dd56;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #fafafa;
+}
+
+.icon {
+    font-size: 1.5em;
+    padding: .5em;
+    transition: .5s ease-in-out;
+    border-radius: 100%;
+    border: 7px solid #00000035;
+    cursor: pointer;
+}
+
+.active {
+    transform: scale(1.25) translateY(-1em);
+    background: linear-gradient(135deg, #23f, #6589ff);
+    border: 7px solid #ffffff;
+    color: rgb(253, 253, 253);
+}
