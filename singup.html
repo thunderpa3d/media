@@ -27,7 +27,7 @@
         const supabase = createClient(supabaseUrl, supabaseKey);
 
         // التعامل مع حدث إرسال النموذج
-        document.getElementById("singupForm").addEventListener("submit", async function(event) {
+        document.getElementById("signupForm").addEventListener("submit", async function(event) {
             event.preventDefault();  // منع إعادة تحميل الصفحة
 
             const email = document.getElementById("email").value;
