@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="111.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    >
+  </script>
+ 
+ <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header:hover {
+            background-color: #0056b3;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .header .icons a {
+            color: white;
+            margin-left: 20px;
+            font-size: 28px;
+            transition: color 0.3s ease;
+        }
+
+        .header .icons a:hover {
+            color: #ffdd57;
+        }
+
+        .header + * {
+            margin-top: 100px; /* Added margin to prevent content overlap with the fixed header */
+        }
+
+        .product-detail {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .product-detail:hover {
+            transform: scale(1.02);
+        }
+
+        .product-detail img {
+            width: 100%;
+            border-radius: 12px;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-detail img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-detail h2 {
+            margin-top: 20px;
+            font-size: 30px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .product-detail p {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-detail .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .owner-info {
+            margin-top: 40px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .owner-info h3 {
+            font-size: 26px;
+            color: #007bff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .owner-info p {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+
+        .owner-info .owner-details {
+            margin-top: 15px;
+        }
+
+        .owner-info .owner-details p {
+            font-size: 16px;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+</div>
+<div class="bottom-bar">
+  <!-- رابط الصفحة الرئيسية -->
+
+  
+  <!-- رابط الملف الشخصي -->
+  <a href="profile.html">
+    <ion-icon name="person-outline" class="icon" onclick="change(this)"></ion-icon>
+  </a>
+  <a href="center.html">
+      <ion-icon name="home-outline" class="icon active" onclick="change(this)"></ion-icon>
+    </a>
+  <!-- رابط إضافة منتج -->
+  <a href="add-product.html">
+    <ion-icon name="add-circle-outline" class="icon" onclick="change(this)"></ion-icon>
+  </a>
+</div>
+<script>
+    function change(item){
+        const buttons = document.querySelectorAll('ion-icon');
+        buttons.forEach(function(obj){
+            obj.classList.remove("active");
+        });
+        item.classList.add("active");
+    }
+</script>
+   
+
+    <!-- Product Detail Section -->
+    <div class="product-detail" id="product-detail">
+        <img src="" alt="Product Image" id="product-img">
+        <h2 id="product-name">اسم المنتج</h2>
+        <p id="product-description">وصف المنتج هنا.</p>
+        <p><strong>السعر:</strong> <span id="product-price" class="price">0.00</span></p>
+    </div>
+
+    <!-- Owner Information Section -->
+    <div class="owner-info" id="owner-info">
+        <h3>معلومات الناشر</h3>
+        <div class="owner-details">
+            <p><strong>اسم صاحب المنتج:</strong> <span id="owner-name">اسم صاحب المنتج</span></p>
+            <p><strong>رقم الهاتف:</strong> <span id="owner-phone">+966 123 456 789</span></p>
+            <p><strong>البريد الإلكتروني:</strong> <span id="owner-email">email@example.com</span></p>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
