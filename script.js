@@ -1,8 +1,4 @@
-const supabaseUrl = 'https://ciqpdavzvndopznczevf.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpcXBkYXZ6dm5kb3B6bmN6ZXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NjY1NTEsImV4cCI6MjA1MjU0MjU1MX0.RxLSUcAzgt8G4QprXc-abNW-kecXh17Q6k-xUbaMo_g';
-
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // تسجيل الدخول باستخدام Supabase
 document.getElementById("loginForm").addEventListener("submit", async function (event) {
@@ -31,9 +27,7 @@ async function uploadFileToGitHub(file) {
     const GITHUB_USERNAME = "thunderpa3d"; // استبدل باسم المستخدم
     const REPO_NAME = "media"; // استبدل باسم المستودع
     const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/`;
-   // استخدام متغير البيئة بدلاً من تضمين الرمز مباشرة
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-
+    const GITHUB_TOKEN = "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"; // قم بتخزينه بأمان
 
     const base64File = await fileToBase64(file);
     const fileName = `${Date.now()}-${file.name}`;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تاجر براحتك </title>
-    <link rel="stylesheet" href="add.css">
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="111.css" />
     <script
     type="module"
@@ -43,6 +43,25 @@
             <label for="price">السعر</label>
             <input type="number" id="price" required>
             
+            <label for="currency">نوع العملة</label>
+            <select id="currency" required>
+                <option value="" disabled selected>اختر العملة</option>
+                <option value="usd">دولار</option>
+                <option value="try">ليرة تركي</option>
+                <option value="syp">ليرة سورية</option>
+                <option value="eur">يورو</option>
+            </select>
+            
+            <label for="category">التصنيف</label>
+            <select id="category" required>
+                <option value="" disabled selected>اختر تصنيفًا</option>
+                <option value="electronics">إلكترونيات</option>
+                <option value="furniture">أثاث</option>
+                <option value="clothing">ملابس</option>
+                <option value="vehicles">مركبات</option>
+                <option value="other">أخرى</option>
+            </select>
+            
             <label for="image">اختر صورة</label>
             <input type="file" id="image" required>
             
@@ -50,7 +69,6 @@
         </form>
     </section>
 
-    
     <script>
         function change(item){
             const buttons = document.querySelectorAll('ion-icon');
@@ -60,7 +78,6 @@
             item.classList.add("active");
         }
     </script>
-    <script type="module" src="script.js"></script>
-
+     <script src="script.js" defer></script>
 </body>
 </html>

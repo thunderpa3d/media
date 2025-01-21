@@ -6,6 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>اشتراك</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css">
+
     <link rel='stylesheet' href='index22.css'>
 </head>
 
@@ -28,20 +29,24 @@
                     <button type="submit">اشتراك</button>
                     <div class="register">
                         <p>لديك حساب لدينا? <a href="login.html">سجل دخول هنا</a></p>
+                    
                     </div>
+                   
                 </form>
             </div>
-        </div>
-    </section>
+          
+             
 
-    <!-- إضافة مكتبة Supabase عبر CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/supabase.min.js"></script>
+        </div>
+        
+    </section>
+    <script src="package-lock.json"></script>
 
     <script>
         // إعداد Supabase
         const supabaseUrl = 'https://ciqpdavzvndopznczevf.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpcXBkYXZ6dm5kb3B6bmN6ZXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NjY1NTEsImV4cCI6MjA1MjU0MjU1MX0.RxLSUcAzgt8G4QprXc-abNW-kecXh17Q6k-xUbaMo_g'; // ضع مفتاح Supabase الخاص بك هنا
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabase = createClient(supabaseUrl, supabaseKey);
 
         // التعامل مع حدث إرسال النموذج
         document.getElementById("signupForm").addEventListener("submit", async function(event) {
@@ -68,6 +73,7 @@
             }
         });
     </script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
