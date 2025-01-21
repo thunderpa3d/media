@@ -1,4 +1,3 @@
-// تأكد من أن مكتبة Supabase تم تحميلها أولًا قبل استخدام createClient
 window.addEventListener('load', function () {
     const supabaseUrl = 'https://ciqpdavzvndopznczevf.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpcXBkYXZ6dm5kb3B6bmN6ZXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NjY1NTEsImV4cCI6MjA1MjU0MjU1MX0.RxLSUcAzgt8G4QprXc-abNW-kecXh17Q6k-xUbaMo_g'; // ضع مفتاح Supabase الخاص بك هنا
