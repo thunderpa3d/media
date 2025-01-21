@@ -70,20 +70,51 @@ import { createClient } from '@supabase/supabase-js'
     }
 
     // نشر التجارة إلى Supabase
-    document.addEventListener('DOMContentLoaded', function () {
-        const postForm = document.getElementById("postForm");
-        if (postForm) {
-            postForm.addEventListener("submit", async function (event) {
-                event.preventDefault();
+ document.getElementById("postForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-                const formData = new FormData(this);
-                const content = formData.get("content");
-                const price = formData.get("price");
-                const location = formData.get("location");
-                const file = formData.get("media");
+    const name = document.getElementById("name").value;
+    const description = document.getElementById("description").value;
+    const price = document.getElementById("price").value;
+    const currency = document.getElementById("currency").value; // قيمة نوع العملة
+    const category = document.getElementById("category").value;
+    const image = document.getElementById("image").files[0];
 
-                try {
-                    const mediaUrl = await uploadFileToGitHub(file);
+    try {
+        // رفع الصورة إلى Supabase Storage
+        const { data: storageData, error: storageError } = await supabase.storage
+            .from("products")
+            .upload(`images/${Date.now()}-${image.name}`, image);
+
+        if (storageError) throw storageError;
+
+        const imageUrl = `https://ciqpdavzvndopznczevf.supabase.co/storage/v1/object/public/products/${storageData.path}`;
+
+        // إدخال بيانات المنتج إلى قاعدة البيانات
+        const { data, error } = await supabase
+            .from("products")
+            .insert([
+                {
+                    name,
+                    description,
+                    price,
+                    currency, // إرسال قيمة نوع العملة
+                    category,
+                    image_url: imageUrl,
+                    created_at: new Date(),
+                },
+            ]);
+
+        if (error) throw error;
+
+        alert("تم نشر المنتج بنجاح!");
+        window.location.reload(); // تحديث الصفحة بعد النشر
+    } catch (error) {
+        console.error("Error publishing product:", error);
+        alert("حدث خطأ أثناء نشر المنتج.");
+    }
+});
+
 
                     // نشر البيانات في Supabase
                     const { data, error } = await supabase
