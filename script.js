@@ -115,25 +115,23 @@ import { createClient } from '@supabase/supabase-js'
     }
 });
 
+// نشر البيانات في Supabase
+try {
+    const { data, error } = await supabase
+        .from('posts')
+        .insert([
+            { content, price, location, media_url: mediaUrl, created_at: new Date() }
+        ]);
 
-                    // نشر البيانات في Supabase
-                    const { data, error } = await supabase
-                        .from('posts')
-                        .insert([
-                            { content, price, location, media_url: mediaUrl, created_at: new Date() }
-                        ]);
+    if (error) throw error;
 
-                    if (error) throw error;
+    alert("تم نشر التجارة بنجاح");
+    window.location.href = "center.html"; // Redirect to the page showing the posts
+} catch (error) {
+    console.error("Error:", error);
+    alert("حدث خطأ أثناء العملية");
+}
 
-                    alert("تم نشر التجارة بنجاح");
-                    window.location.href = "center.html"; // Redirect to the page showing the posts
-                } catch (error) {
-                    console.error("Error:", error);
-                    alert("حدث خطأ أثناء العملية");
-                }
-            });
-        }
-    });
 
     // جلب المنشورات من Supabase وعرضها
     async function fetchPosts() {
