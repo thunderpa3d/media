@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاجر براحتك </title>
+    <title>تاجر براحتك</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="111.css" />
+
+    <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
+    <!-- Ionicons CDN -->
     <script
-    type="module"
-    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-  >
-</script>
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 </head>
 <body>
     <header>
-        <div class="logo">تاجر براحتك </div>
+        <div class="logo">تاجر براحتك</div>
         <div class="bottom-bar">
-             <a href="add-product.html">
-              <ion-icon name="add-circle-outline" class="icon active" onclick="change(this)"></ion-icon>
-           
-            <a href="center.html">
-                <ion-icon name="home-outline" class="icon " onclick="change(this)"></ion-icon>
-              </a>
-              <a href="profile.html">
-                <ion-icon name="person-outline" class="icon" onclick="change(this)"></ion-icon>
-              </a>
-           
+            <a href="add-product.html">
+                <ion-icon name="add-circle-outline" class="icon active" onclick="change(this)"></ion-icon>
             </a>
-          </div>
+            <a href="center.html">
+                <ion-icon name="home-outline" class="icon" onclick="change(this)"></ion-icon>
+            </a>
+            <a href="profile.html">
+                <ion-icon name="person-outline" class="icon" onclick="change(this)"></ion-icon>
+            </a>
         </div>
     </header>
 
@@ -49,7 +52,7 @@
             <select id="currency" required>
                 <option value="" disabled selected>اختر العملة</option>
                 <option value="usd">دولار</option>
-                <option value="try">ليرة تركي</option>
+                <option value="try">ليرة تركية</option>
                 <option value="syp">ليرة سورية</option>
                 <option value="eur">يورو</option>
             </select>
@@ -72,15 +75,65 @@
     </section>
 
     <script>
-        function change(item){
+        // تغيير الأيقونة النشطة
+        function change(item) {
             const buttons = document.querySelectorAll('ion-icon');
-            buttons.forEach(function(obj){
+            buttons.forEach(function (obj) {
                 obj.classList.remove("active");
             });
             item.classList.add("active");
         }
-    </script>
-   <script type="module" src="script.js"></script>
 
+        // Supabase Configuration
+        const supabaseUrl = 'https://ciqpdavzvndopznczevf.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpcXBkYXZ6dm5kb3B6bmN6ZXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NjY1NTEsImV4cCI6MjA1MjU0MjU1MX0.RxLSUcAzgt8G4QprXc-abNW-kecXh17Q6k-xUbaMo_g'; // ضع المفتاح هنا
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // رفع المنتج الجديد
+        document.getElementById("postForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const description = document.getElementById("description").value;
+            const price = document.getElementById("price").value;
+            const currency = document.getElementById("currency").value;
+            const category = document.getElementById("category").value;
+            const image = document.getElementById("image").files[0];
+
+            try {
+                // رفع الصورة إلى Supabase Storage
+                const { data: storageData, error: storageError } = await supabase.storage
+                    .from("products")
+                    .upload(`images/${Date.now()}-${image.name}`, image);
+
+                if (storageError) throw storageError;
+
+                const imageUrl = `https://ciqpdavzvndopznczevf.supabase.co/storage/v1/object/public/products/${storageData.path}`;
+
+                // إدخال بيانات المنتج إلى قاعدة البيانات
+                const { data, error } = await supabase
+                    .from("products")
+                    .insert([
+                        {
+                            name,
+                            description,
+                            price,
+                            currency,
+                            category,
+                            image_url: imageUrl,
+                            created_at: new Date(),
+                        },
+                    ]);
+
+                if (error) throw error;
+
+                alert("تم نشر المنتج بنجاح!");
+                window.location.reload(); // تحديث الصفحة بعد النشر
+            } catch (error) {
+                console.error("Error publishing product:", error);
+                alert("حدث خطأ أثناء نشر المنتج.");
+            }
+        });
+    </script>
 </body>
 </html>
