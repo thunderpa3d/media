@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار Supabase</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/supabase.min.js"></script>
+</head>
+<body>
+    <h1>اختبار Supabase</h1>
+    <script>
+        // إعداد Supabase
+        const supabaseUrl = 'https://ciqpdavzvndopznczevf.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpcXBkYXZ6dm5kb3B6bmN6ZXZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5NjY1NTEsImV4cCI6MjA1MjU0MjU1MX0.RxLSUcAzgt8G4QprXc-abNW-kecXh17Q6k-xUbaMo_g';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // اختبار الاتصال
+        console.log("Supabase instance:", supabase);
+    </script>
+</body>
+</html>
